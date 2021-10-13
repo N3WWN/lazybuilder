@@ -63,6 +63,10 @@
             - git_pull
             - metadata
 
+        - name: Ensure metadata dictionary is empty
+          set_fact:
+            metadata_ds: {}
+
         - name: Generate dictionary for the metadata
           set_fact:
             metadata_ds: "{{ metadata_ds|default({}) | combine({item.split()[0]: {'length': 'sum_length_' + item.split()[0]|length|string, 'name': item.split()[1]}}) }}"
@@ -135,6 +139,10 @@
           tags:
             - git_pull
             - metadata
+
+        - name: Ensure metadata dictionary is empty
+          set_fact:
+            metadata_ds: {}
 
         - name: Generate dictionary for the metadata
           set_fact:
